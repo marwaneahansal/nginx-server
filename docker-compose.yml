@@ -1,0 +1,15 @@
+services:
+  server:
+    container_name: "server"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist:/dist
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+  php:
+    image: php:fpm
+    volumes:
+        - ./dist:/dist
